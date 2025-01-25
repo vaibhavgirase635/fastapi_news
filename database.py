@@ -2,10 +2,14 @@ from sqlalchemy import create_engine
 from sqlalchemy.ext.declarative import declarative_base
 from sqlalchemy.orm import sessionmaker
 import os
+from decouple import config
 
-DB_USER = os.environ.get("DB_USER")
-DB_PASSWORD = os.environ.get("DB_PASSWORD")
 
+
+DB_USER = config("DB_USER")
+print(DB_USER)
+DB_PASSWORD = config("DB_PASSWORD")
+print(DB_PASSWORD)
 DATABASE_URL = f"mysql+pymysql://{DB_USER}:{DB_PASSWORD}@localhost/newsdb"
 # DATABASE_URL = "postgresql://postgres:vaibhav123@localhost/pizza_delivery"
 

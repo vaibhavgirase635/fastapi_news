@@ -1,11 +1,11 @@
 from celery import Celery
 from database import SessionLocal
 from models import News
-from news_fetcher import fetch_news
 from celery.schedules import crontab
 import requests, os
+from decouple import config
 
-NEWS_API_KEY = os.environ.get("NEWS_API_KEY")
+NEWS_API_KEY = config("NEWS_API_KEY")
 NEWS_API_URL = f"https://newsapi.org/v2/everything?q=cricket&apiKey={NEWS_API_KEY}"
 
 celery_app = Celery(
